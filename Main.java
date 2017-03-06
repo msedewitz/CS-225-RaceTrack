@@ -2,7 +2,7 @@
  * Sergio De Sa
  */
 
-package sample;
+
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.MoveTo;
@@ -21,6 +22,7 @@ import javafx.scene.shape.Path;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
 import java.awt.*;
 
@@ -64,6 +66,11 @@ public class Main extends Application {
 
     }
     public void createCenterToolBar(){
+        Car[] cars = new Car[4];
+        ImageView image1, image2, image3,image4;
+        Image image = new Image("car1.png");
+
+
         Group groupCenter = new Group();
         GridPane grid = new GridPane();
 
@@ -76,6 +83,16 @@ public class Main extends Application {
         Path path = new Path();
         path.setStrokeWidth(30);
         path.setFill(Color.ALICEBLUE);
+
+        cars[0] = new Car(100, 280,image);
+        cars[1] = new Car(316, 144,image);
+        cars[2] = new Car(527, 287,image);
+        cars[3] = new Car(345, 495,image);
+
+        image1 = new ImageView(cars[0].getCarImage());
+        image1.setX(80);
+        image1.setY(250);
+
 
         path.getElements().add(new MoveTo(100, 280));
         path.getElements().addAll(  venue.getCheckPoints(0),
@@ -92,11 +109,12 @@ public class Main extends Application {
         Text text2 = new Text(  venue.getCheckPoints(1).getX() + 20,
                 venue.getCheckPoints(1).getY() + 20,
                 venue.getCheckPoints(2).getName());
-        Text text3 = new Text(  venue.getCheckPoints(2).getX() + 30,
+        Text text3 = new Text(  venue.getCheckPoints(2).getX() + 20,
                 venue.getCheckPoints(2).getY() + 20,
                 venue.getCheckPoints(3).getName());
 
-        groupCenter.getChildren().addAll(path, text0, text1, text2, text3);
+        groupCenter.getChildren().addAll(path, text0, text1, text2, text3, image1);
+
         pane.setCenter(groupCenter);
 
     }

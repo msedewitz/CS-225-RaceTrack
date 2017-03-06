@@ -2,7 +2,6 @@
  * Sergio De Sa
  */
 
-package sample;
 
 import javafx.scene.shape.QuadCurveTo;
 

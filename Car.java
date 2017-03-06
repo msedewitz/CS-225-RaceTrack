@@ -1,4 +1,6 @@
-package sample;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import javax.swing.*;
 import java.util.Random;
@@ -11,12 +13,13 @@ public class Car {
     private int tire, engine, weight;
     private double speed;
     private int x,y;
-    private ImageIcon image;
+    private Image image;
     private String name;
 
     //constructor
-    public Car(int startX, int startY){
+    public Car(int startX, int startY,Image i){
         calcSpeed();
+        image = i;
         x = startX;
         y = startY;
     }
@@ -44,9 +47,12 @@ public class Car {
     public int getX(){return x;}
     public int getY(){return y;}
     public String getName(){return name;}
-
     public String toString(){
         return "Name: "+name+ "Tire: "+tire+" Engine: "+engine+" Weight: "+weight+" Speed: "+speed+" X: "+x+" Y: "+y;
+    }
+
+    public Image getCarImage(){
+        return image;
     }
 
 
