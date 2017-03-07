@@ -2,8 +2,9 @@
  * Sergio De Sa
  */
 
+package Project3;
 
-
+import javafx.animation.PathTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -23,6 +24,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
+import javafx.util.Duration;
 
 import java.awt.*;
 
@@ -99,6 +101,23 @@ public class Main extends Application {
                 venue.getCheckPoints(1),
                 venue.getCheckPoints(2),
                 venue.getCheckPoints(3));
+
+        /*    */
+        PathTransition pathTransition = new PathTransition();
+
+        double speed = cars[0].getSpeed();
+
+        pathTransition.setDuration(Duration.seconds(speed));
+        pathTransition.setPath(path);
+        pathTransition.setNode(image1);
+
+        //setOrientation get the car on track
+        pathTransition.setOrientation
+                (PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+        pathTransition.setCycleCount(1);
+        pathTransition.play();
+
+        /*      */
 
         Text text0 = new Text(  venue.getCheckPoints(3).getX() + 20,
                 venue.getCheckPoints(3).getY() + 20,
