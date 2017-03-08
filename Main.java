@@ -1,3 +1,4 @@
+
 import javafx.animation.PathTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -26,10 +27,10 @@ public class Main extends Application {
     Button start, restart, quit, displayStats;
     Label directions, instructionHeader;
     ImageView image0, image1, image2, image3;
-    Image imageA = new Image("blueCar.png");
-    Image imageB = new Image("blackCar.png");
-    Image imageC = new Image("greenCar.png");
-    Image imageD = new Image("redCar.png");
+    Image imageA = new Image("carBlue.png");
+    Image imageB = new Image("carGreen.png");
+    Image imageC = new Image("carRed.png");
+    Image imageD = new Image("carYellow.png");
     Car[] cars = new Car[4];
     double speed0, speed1, speed2, speed3;
     private Alert stats;
@@ -44,9 +45,9 @@ public class Main extends Application {
         cars[2] = new Car(527, 287,imageC);
         cars[3] = new Car(345, 495,imageD);
         cars[0].setName("Blue Car");
-        cars[1].setName("Black Car");
-        cars[2].setName("Green Car");
-        cars[3].setName("Red Car");
+        cars[1].setName("Green Car");
+        cars[2].setName("Red Car");
+        cars[3].setName("Yellow Car");
 
         createTopToolBar();
         createInstructions();
@@ -118,14 +119,16 @@ public class Main extends Application {
                 venue.getCheckPoints(2));
 
         image0 = new ImageView(cars[0].getCarImage());
-        image0.setX(80);
-        image0.setY(260);
+        image0.setX(100);
+        image0.setY(280);
+        image0.setFitHeight(50);
+        image0.setFitWidth(50);
 
         image1 = new ImageView(cars[1].getCarImage());
         image1.setX(316);
         image1.setY(144);
-        image1.setFitHeight(55);
-        image1.setFitWidth(40);
+        image1.setFitHeight(50);
+        image1.setFitWidth(50);
 
 
         image2 = new ImageView(cars[2].getCarImage());
@@ -137,8 +140,8 @@ public class Main extends Application {
         image3 = new ImageView(cars[3].getCarImage());
         image3.setX(345);
         image3.setY(495);
-        image3.setFitHeight(75);
-        image3.setFitWidth(75);
+        image3.setFitHeight(50);
+        image3.setFitWidth(50);
 
         start.setOnAction(e -> {
             cars[0].calcSpeed();
@@ -193,7 +196,7 @@ public class Main extends Application {
         displayStats.setOnAction(e -> {
             stats = new Alert(Alert.AlertType.INFORMATION);
             stats.setHeaderText("Car Statistics");
-            stats.setContentText(cars[0].toString() + cars[1].toString() + cars[2].toString() + cars[3].toString());
+            stats.setContentText(cars[0].toString());
             stats.showAndWait();
         });
         /*      */
@@ -210,14 +213,16 @@ public class Main extends Application {
         Text text3 = new Text(  venue.getCheckPoints(2).getX(),
                 venue.getCheckPoints(2).getY(),
                 venue.getCheckPoints(3).getName());
+
         text0.setFill(Color.GREEN);
-        text1.setFill(Color.GREEN);
-        text2.setFill(Color.GREEN);
-        text3.setFill(Color.GREEN);
         text0.setStyle("-fx-font: 45 arial;");
+        text1.setFill(Color.GREEN);
         text1.setStyle("-fx-font: 45 arial;");
+        text2.setFill(Color.GREEN);
         text2.setStyle("-fx-font: 45 arial;");
+        text3.setFill(Color.GREEN);
         text3.setStyle("-fx-font: 45 arial;");
+
         groupCenter.getChildren().addAll(path0, path1, path2, path3,
                 text0, text1, text2, text3,
                 image0, image1, image2, image3);
