@@ -1,10 +1,9 @@
-/*
- * Sergio De Sa
- */
 
-package Project3;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -69,8 +68,12 @@ public class Main extends Application {
     }
     public void createCenterToolBar(){
         Car[] cars = new Car[4];
-        ImageView image1, image2, image3,image4;
-        Image image = new Image("car1.png");
+        ImageView image0, image1, image2, image3;
+        Image imageA = new Image("car1.png");
+        Image imageB = new Image("car2.png");
+        Image imageC = new Image("car3.png");
+        Image imageD = new Image("car4.png");
+
 
 
         Group groupCenter = new Group();
@@ -82,40 +85,112 @@ public class Main extends Application {
 
         groupCenter.getChildren().addAll(grid);
 
-        Path path = new Path();
-        path.setStrokeWidth(30);
-        path.setFill(Color.ALICEBLUE);
+        Path path0 = new Path();
+        path0.setStrokeWidth(30);
+        path0.setFill(Color.ALICEBLUE);
 
-        cars[0] = new Car(100, 280,image);
-        cars[1] = new Car(316, 144,image);
-        cars[2] = new Car(527, 287,image);
-        cars[3] = new Car(345, 495,image);
+        cars[0] = new Car(100, 280,imageA);
+        cars[1] = new Car(316, 144,imageB);
+        cars[2] = new Car(527, 287,imageC);
+        cars[3] = new Car(345, 495,imageD);
 
-        image1 = new ImageView(cars[0].getCarImage());
-        image1.setX(80);
-        image1.setY(250);
+        image0 = new ImageView(cars[0].getCarImage());
+        image0.setX(80);
+        image0.setY(260);
+
+        image1 = new ImageView(cars[1].getCarImage());
+        image1.setX(296);
+        image1.setY(134);
+        image1.setFitHeight(75);
+        image1.setFitWidth(60);
+
+        image2 = new ImageView(cars[2].getCarImage());
+        image2.setX(507);
+        image2.setY(267);
+        image2.setFitHeight(50);
+        image2.setFitWidth(50);
+
+        image3 = new ImageView(cars[3].getCarImage());
+        image3.setX(325);
+        image3.setY(485);
+        image3.setFitHeight(75);
+        image3.setFitWidth(75);
 
 
-        path.getElements().add(new MoveTo(100, 280));
-        path.getElements().addAll(  venue.getCheckPoints(0),
+        path0.getElements().add(new MoveTo(100, 280));
+        path0.getElements().addAll(  venue.getCheckPoints(0),
+                                    venue.getCheckPoints(1),
+                                    venue.getCheckPoints(2),
+                                    venue.getCheckPoints(3));
+
+        Path path1 = new Path();
+        path1.getElements().addAll(new MoveTo(316, 144));
+        path1.getElements().addAll(venue.getCheckPoints(1),
+                                    venue.getCheckPoints(2),
+                                    venue.getCheckPoints(3),
+                                    venue.getCheckPoints(0));
+
+        Path path2 = new Path();
+        path2.getElements().addAll(new MoveTo(527, 287));
+        path2.getElements().addAll(venue.getCheckPoints(2),
+                venue.getCheckPoints(3),
+                venue.getCheckPoints(0),
+                venue.getCheckPoints(1));
+
+        Path path3 = new Path();
+        path3.getElements().addAll(new MoveTo(345, 495));
+        path3.getElements().addAll(venue.getCheckPoints(3),
+                venue.getCheckPoints(0),
                 venue.getCheckPoints(1),
-                venue.getCheckPoints(2),
-                venue.getCheckPoints(3));
+                venue.getCheckPoints(2));
 
         /*    */
-        PathTransition pathTransition = new PathTransition();
 
-        double speed = cars[0].getSpeed();
-
-        pathTransition.setDuration(Duration.seconds(speed));
-        pathTransition.setPath(path);
-        pathTransition.setNode(image1);
-
+        PathTransition pathTransition0 = new PathTransition();
+        double speed0 = cars[0].getSpeed();
+        pathTransition0.setDuration(Duration.seconds(speed0));
+        pathTransition0.setPath(path0);
+        pathTransition0.setNode(image0);
         //setOrientation get the car on track
-        pathTransition.setOrientation
+        pathTransition0.setOrientation
                 (PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-        pathTransition.setCycleCount(1);
-        pathTransition.play();
+        pathTransition0.setCycleCount(1);
+
+
+        PathTransition pathTransition1 = new PathTransition();
+        double speed1 = cars[1].getSpeed();
+        pathTransition1.setDuration(Duration.seconds(speed1));
+        pathTransition1.setPath(path1);
+        pathTransition1.setNode(image1);
+        pathTransition1.setOrientation
+                (PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+        pathTransition1.setCycleCount(1);
+
+
+
+        PathTransition pathTransition2 = new PathTransition();
+        double speed2 = cars[2].getSpeed();
+        pathTransition2.setDuration(Duration.seconds(speed2));
+        pathTransition2.setPath(path2);
+        pathTransition2.setNode(image2);
+        pathTransition2.setOrientation
+                (PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+        pathTransition2.setCycleCount(1);
+
+
+        PathTransition pathTransition3 = new PathTransition();
+        double speed3 = cars[3].getSpeed();
+        pathTransition3.setDuration(Duration.seconds(speed3));
+        pathTransition3.setPath(path3);
+        pathTransition3.setNode(image3);
+        pathTransition3.setOrientation
+                (PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+        pathTransition3.setCycleCount(1);
+
+        pathTransition0.play();
+        pathTransition1.play();
+        pathTransition2.play();
+        pathTransition3.play();
 
         /*      */
 
@@ -132,9 +207,16 @@ public class Main extends Application {
                 venue.getCheckPoints(2).getY() + 20,
                 venue.getCheckPoints(3).getName());
 
-        groupCenter.getChildren().addAll(path, text0, text1, text2, text3, image1);
+        groupCenter.getChildren().addAll(path0, path1, path2, path3,
+                                        text0, text1, text2, text3,
+                                        image0, image1, image2, image3);
 
         pane.setCenter(groupCenter);
+
+//        System.out.println("speed 0 :" + speed0  +
+//                            "\nspeed 1: " +speed1 +
+//                            "\nspeed 2 : " + speed2 +
+//                            "\nspeed 3 : " +speed3);
 
     }
 
