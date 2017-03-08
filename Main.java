@@ -193,24 +193,31 @@ public class Main extends Application {
         displayStats.setOnAction(e -> {
             stats = new Alert(Alert.AlertType.INFORMATION);
             stats.setHeaderText("Car Statistics");
-            stats.setContentText(cars[0].toString());
+            stats.setContentText(cars[0].toString() + cars[1].toString() + cars[2].toString() + cars[3].toString());
             stats.showAndWait();
         });
         /*      */
 
-        Text text0 = new Text(  venue.getCheckPoints(3).getX() + 20,
-                venue.getCheckPoints(3).getY() + 20,
+        Text text0 = new Text(  venue.getCheckPoints(3).getX(),
+                venue.getCheckPoints(3).getY(),
                 venue.getCheckPoints(0).getName());
-        Text text1 = new Text(  venue.getCheckPoints(0).getX() - 30,
-                venue.getCheckPoints(0).getY() - 30,
+        Text text1 = new Text(  venue.getCheckPoints(0).getX(),
+                venue.getCheckPoints(0).getY(),
                 venue.getCheckPoints(1).getName());
-        Text text2 = new Text(  venue.getCheckPoints(1).getX() + 20,
-                venue.getCheckPoints(1).getY() + 20,
+        Text text2 = new Text(  venue.getCheckPoints(1).getX(),
+                venue.getCheckPoints(1).getY(),
                 venue.getCheckPoints(2).getName());
-        Text text3 = new Text(  venue.getCheckPoints(2).getX() + 20,
-                venue.getCheckPoints(2).getY() + 20,
+        Text text3 = new Text(  venue.getCheckPoints(2).getX(),
+                venue.getCheckPoints(2).getY(),
                 venue.getCheckPoints(3).getName());
-
+        text0.setFill(Color.GREEN);
+        text1.setFill(Color.GREEN);
+        text2.setFill(Color.GREEN);
+        text3.setFill(Color.GREEN);
+        text0.setStyle("-fx-font: 45 arial;");
+        text1.setStyle("-fx-font: 45 arial;");
+        text2.setStyle("-fx-font: 45 arial;");
+        text3.setStyle("-fx-font: 45 arial;");
         groupCenter.getChildren().addAll(path0, path1, path2, path3,
                 text0, text1, text2, text3,
                 image0, image1, image2, image3);
