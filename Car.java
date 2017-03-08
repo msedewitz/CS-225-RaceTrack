@@ -36,6 +36,11 @@ public class Car {
         engine = rand.nextInt(10)+1;
         weight = rand.nextInt(10)+1;
         speed = ((double)(tire+engine+weight))/3;
+
+        //round speed to 2 decimal places
+        speed = speed*100;
+        speed = Math.round(speed);
+        speed = speed/100;
     }
     /**
      * Getters
@@ -49,7 +54,7 @@ public class Car {
     public void setName(String n){name = n;}
     public String getName(){return name;}
     public String toString(){
-        return "Name: "+name+ "\n   Tire Pressure: "+tire+"\n   Engine Horsepower: "+engine+"\n Weight: "+weight+"\n    Speed: "+speed*10+"mph";
+        return "Name: "+name+ "\n  Tire Pressure: "+tire+"psi\n  Engine Horsepower: "+engine+"00\n  Weight: "+weight+"00lbs\n  Speed: "+speed*10+"mph\n\n";
     }
 
     public Image getCarImage(){
