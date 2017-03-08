@@ -35,7 +35,7 @@ public class Car {
         tire = rand.nextInt(10)+1;
         engine = rand.nextInt(10)+1;
         weight = rand.nextInt(10)+1;
-        speed = (tire+engine+weight)/3;
+        speed = ((double)(tire+engine+weight))/3;
     }
     /**
      * Getters
@@ -46,9 +46,10 @@ public class Car {
     public double getSpeed(){return speed;}
     public int getX(){return x;}
     public int getY(){return y;}
+    public void setName(String n){name = n;}
     public String getName(){return name;}
     public String toString(){
-        return "Name: "+name+ "Tire: "+tire+" Engine: "+engine+" Weight: "+weight+" Speed: "+speed+" X: "+x+" Y: "+y;
+        return "Name: "+name+ "\n   Tire Pressure: "+tire+"\n   Engine Horsepower: "+engine+"\n Weight: "+weight+"\n    Speed: "+speed*10+"mph";
     }
 
     public Image getCarImage(){

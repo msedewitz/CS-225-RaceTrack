@@ -2,24 +2,25 @@
  * Sergio De Sa
  */
 
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javax.swing.*;
 
 public class Venue {
-//    private Car[] cars;
+    private Car[] cars;
     private CheckPoint[] checkPoints;
-//    Image car1;
-//    ImageView imageView1;
+    Image car1;
+    ImageView imageView1;
 
 
     public Venue(){
-//        cars = new Car[4];
+        //cars = new Car[4];
         checkPoints = new CheckPoint[4];
 //        car1 = new Image("car1.png");
-//        imageView1 = new ImageView();
-//        imageView1.setImage(car1);
+        //imageView1 = new ImageView();
+       // imageView1.setImage(car1);
 
 
 
@@ -39,4 +40,3 @@ public class Venue {
 
 
 }
-

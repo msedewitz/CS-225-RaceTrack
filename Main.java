@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 import javafx.animation.PathTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -13,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -32,11 +25,28 @@ public class Main extends Application {
     VBox instructions = new VBox();
     Button start, restart, quit, displayStats;
     Label directions, instructionHeader;
+    ImageView image0, image1, image2, image3;
+    Image imageA = new Image("blueCar.png");
+    Image imageB = new Image("blackCar.png");
+    Image imageC = new Image("greenCar.png");
+    Image imageD = new Image("redCar.png");
+    Car[] cars = new Car[4];
+    double speed0, speed1, speed2, speed3;
+    private Alert stats;
+    Boolean inGame = true;
 
     Venue venue = new Venue();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        cars[0] = new Car(100, 280,imageA);
+        cars[1] = new Car(316, 144,imageB);
+        cars[2] = new Car(527, 287,imageC);
+        cars[3] = new Car(345, 495,imageD);
+        cars[0].setName("Blue Car");
+        cars[1].setName("Black Car");
+        cars[2].setName("Green Car");
+        cars[3].setName("Red Car");
 
         createTopToolBar();
         createInstructions();
@@ -66,18 +76,6 @@ public class Main extends Application {
 
     }
     public void createCenterToolBar(){
-        Car[] cars = new Car[4];
-        ImageView image0, image1, image2, image3;
-        Image imageA = new Image("car1.png");
-        Image imageB = new Image("car2.png");
-        Image imageC = new Image("car3.png");
-        Image imageD = new Image("car4.png");
-
-        cars[0] = new Car(100, 280,imageA);
-        cars[1] = new Car(316, 144,imageB);
-        cars[2] = new Car(527, 287,imageC);
-        cars[3] = new Car(345, 495,imageD);
-
 
         Group groupCenter = new Group();
         GridPane grid = new GridPane();
@@ -86,7 +84,6 @@ public class Main extends Application {
         grid.setLayoutY(500);
 
         groupCenter.getChildren().addAll(grid);
-
         Path path0 = new Path();
         path0.setStrokeWidth(100);
         path0.setFill(Color.ALICEBLUE);
@@ -143,52 +140,62 @@ public class Main extends Application {
         image3.setFitHeight(75);
         image3.setFitWidth(75);
 
-        PathTransition pathTransition0 = new PathTransition();
-        double speed0 = cars[0].getSpeed();
-        pathTransition0.setDuration(Duration.seconds(speed0));
-        pathTransition0.setPath(path0);
-        pathTransition0.setNode(image0);
-        //setOrientation get the car on track
-        pathTransition0.setOrientation
-                (PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-        pathTransition0.setCycleCount(1);
+        start.setOnAction(e -> {
+            cars[0].calcSpeed();
+            speed0 = cars[0].getSpeed();
+            PathTransition pathTransition0 = new PathTransition();
+            pathTransition0.setDuration(Duration.seconds(speed0));
+            pathTransition0.setPath(path0);
+            pathTransition0.setNode(image0);
+            //setOrientation get the car on track
+            pathTransition0.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+            pathTransition0.setCycleCount(1);
+
+            cars[1].calcSpeed();
+            PathTransition pathTransition1 = new PathTransition();
+            speed1 = cars[1].getSpeed();
+            pathTransition1.setDuration(Duration.seconds(speed1));
+            pathTransition1.setPath(path1);
+            pathTransition1.setNode(image1);
+            pathTransition1.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+            pathTransition1.setCycleCount(1);
+
+            cars[2].calcSpeed();
+            PathTransition pathTransition2 = new PathTransition();
+            speed2 = cars[2].getSpeed();
+            pathTransition2.setDuration(Duration.seconds(speed2));
+            pathTransition2.setPath(path2);
+            pathTransition2.setNode(image2);
+            pathTransition2.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+            pathTransition2.setCycleCount(1);
+
+            cars[3].calcSpeed();
+            PathTransition pathTransition3 = new PathTransition();
+            speed3 = cars[3].getSpeed();
+            pathTransition3.setDuration(Duration.seconds(speed3));
+            pathTransition3.setPath(path3);
+            pathTransition3.setNode(image3);
+            pathTransition3.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+            pathTransition3.setCycleCount(1);
+
+            pathTransition0.play();
+            pathTransition1.play();
+            pathTransition2.play();
+            pathTransition3.play();
 
 
-        PathTransition pathTransition1 = new PathTransition();
-        double speed1 = cars[1].getSpeed();
-        pathTransition1.setDuration(Duration.seconds(speed1));
-        pathTransition1.setPath(path1);
-        pathTransition1.setNode(image1);
-        pathTransition1.setOrientation
-                (PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-        pathTransition1.setCycleCount(1);
+            System.out.println("speed 0 :" + speed0  +
+                    "\nspeed 1: " +speed1 +
+                    "\nspeed 2 : " + speed2 +
+                    "\nspeed 3 : " +speed3);
+        });
 
-
-
-        PathTransition pathTransition2 = new PathTransition();
-        double speed2 = cars[2].getSpeed();
-        pathTransition2.setDuration(Duration.seconds(speed2));
-        pathTransition2.setPath(path2);
-        pathTransition2.setNode(image2);
-        pathTransition2.setOrientation
-                (PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-        pathTransition2.setCycleCount(1);
-
-
-        PathTransition pathTransition3 = new PathTransition();
-        double speed3 = cars[3].getSpeed();
-        pathTransition3.setDuration(Duration.seconds(speed3));
-        pathTransition3.setPath(path3);
-        pathTransition3.setNode(image3);
-        pathTransition3.setOrientation
-                (PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-        pathTransition3.setCycleCount(1);
-
-        pathTransition0.play();
-        pathTransition1.play();
-        pathTransition2.play();
-        pathTransition3.play();
-
+        displayStats.setOnAction(e -> {
+            stats = new Alert(Alert.AlertType.INFORMATION);
+            stats.setHeaderText("Car Statistics");
+            stats.setContentText(cars[0].toString());
+            stats.showAndWait();
+        });
         /*      */
 
         Text text0 = new Text(  venue.getCheckPoints(3).getX() + 20,
@@ -205,15 +212,10 @@ public class Main extends Application {
                 venue.getCheckPoints(3).getName());
 
         groupCenter.getChildren().addAll(path0, path1, path2, path3,
-                                        text0, text1, text2, text3,
-                                        image0, image1, image2, image3);
+                text0, text1, text2, text3,
+                image0, image1, image2, image3);
 
         pane.setCenter(groupCenter);
-
-        System.out.println("speed 0 :" + speed0  +
-                            "\nspeed 1: " +speed1 +
-                            "\nspeed 2 : " + speed2 +
-                            "\nspeed 3 : " +speed3);
 
     }
 
