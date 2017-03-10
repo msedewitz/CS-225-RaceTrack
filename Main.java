@@ -1,4 +1,3 @@
-
 import javafx.animation.PathTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -20,11 +19,13 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 
+import static javafx.application.Platform.exit;
+
 public class Main extends Application {
     Stage stage = new Stage();
     BorderPane pane = new BorderPane();
     VBox instructions = new VBox();
-    Button start, restart, quit, displayStats;
+    Button start, quit, displayStats;
     Label directions, instructionHeader;
     ImageView image0, image1, image2, image3;
     Image imageA = new Image("carBlue.png");
@@ -55,6 +56,7 @@ public class Main extends Application {
 
         Rectangle2D rec = Screen.getPrimary().getVisualBounds();
         Scene scene = new Scene(pane, rec.getWidth(), rec.getHeight());
+        scene.getStylesheets().add("CarStyle.css");
         stage.setTitle("Logic Puzzle Game");
         stage.setScene(scene);
         stage.show();
@@ -68,11 +70,12 @@ public class Main extends Application {
         topToolBar.setAlignment(Pos.TOP_CENTER);
 
         start = new Button("Start");
-        restart = new Button("Restart");
+
         quit = new Button("Quit");
         displayStats = new Button ("Display Statistics");
 
-        topToolBar.getChildren().addAll(start,restart,quit,displayStats);
+
+        topToolBar.getChildren().addAll(start,quit,displayStats);
         pane.setTop(topToolBar);
 
     }
@@ -119,35 +122,35 @@ public class Main extends Application {
                 venue.getCheckPoints(2));
 
         image0 = new ImageView(cars[0].getCarImage());
-        image0.setX(100);
-        image0.setY(280);
-        image0.setFitHeight(50);
-        image0.setFitWidth(50);
+        image0.setX(80);
+        image0.setY(260);
+        image0.setFitHeight(70);
+        image0.setFitWidth(70);
 
         image1 = new ImageView(cars[1].getCarImage());
         image1.setX(316);
         image1.setY(144);
-        image1.setFitHeight(50);
-        image1.setFitWidth(50);
+        image1.setFitHeight(70);
+        image1.setFitWidth(70);
 
 
         image2 = new ImageView(cars[2].getCarImage());
         image2.setX(527);
         image2.setY(287);
-        image2.setFitHeight(50);
-        image2.setFitWidth(50);
+        image2.setFitHeight(70);
+        image2.setFitWidth(70);
 
         image3 = new ImageView(cars[3].getCarImage());
         image3.setX(345);
         image3.setY(495);
-        image3.setFitHeight(50);
-        image3.setFitWidth(50);
+        image3.setFitHeight(70);
+        image3.setFitWidth(70);
 
         start.setOnAction(e -> {
             cars[0].calcSpeed();
             speed0 = cars[0].getSpeed();
             PathTransition pathTransition0 = new PathTransition();
-            pathTransition0.setDuration(Duration.seconds(100/speed0));
+            pathTransition0.setDuration(Duration.seconds(speed0));
             pathTransition0.setPath(path0);
             pathTransition0.setNode(image0);
             //setOrientation get the car on track
@@ -157,7 +160,7 @@ public class Main extends Application {
             cars[1].calcSpeed();
             PathTransition pathTransition1 = new PathTransition();
             speed1 = cars[1].getSpeed();
-            pathTransition1.setDuration(Duration.seconds(100/speed1));
+            pathTransition1.setDuration(Duration.seconds(speed1));
             pathTransition1.setPath(path1);
             pathTransition1.setNode(image1);
             pathTransition1.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
@@ -166,7 +169,7 @@ public class Main extends Application {
             cars[2].calcSpeed();
             PathTransition pathTransition2 = new PathTransition();
             speed2 = cars[2].getSpeed();
-            pathTransition2.setDuration(Duration.seconds(100/speed2));
+            pathTransition2.setDuration(Duration.seconds(speed2));
             pathTransition2.setPath(path2);
             pathTransition2.setNode(image2);
             pathTransition2.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
@@ -175,7 +178,7 @@ public class Main extends Application {
             cars[3].calcSpeed();
             PathTransition pathTransition3 = new PathTransition();
             speed3 = cars[3].getSpeed();
-            pathTransition3.setDuration(Duration.seconds(100/speed3));
+            pathTransition3.setDuration(Duration.seconds(speed3));
             pathTransition3.setPath(path3);
             pathTransition3.setNode(image3);
             pathTransition3.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
@@ -195,10 +198,14 @@ public class Main extends Application {
 
         displayStats.setOnAction(e -> {
             stats = new Alert(Alert.AlertType.INFORMATION);
-            stats.setHeaderText("Car Statistics");
-            stats.setContentText(cars[0].toString()+cars[1].toString()+cars[2].toString()+cars[3].toString());
+
+            stats.setHeaderText("       Car Statistics");
+            stats.setContentText(cars[0].toString() + cars[1].toString() + cars[2].toString() + cars[3].toString());
+            stats.getDialogPane().getScene().getStylesheets().add("DialogPane.css");
             stats.showAndWait();
         });
+
+        quit.setOnAction(e -> exit());
         /*      */
 
         Text text0 = new Text(  venue.getCheckPoints(3).getX(),
@@ -213,16 +220,14 @@ public class Main extends Application {
         Text text3 = new Text(  venue.getCheckPoints(2).getX(),
                 venue.getCheckPoints(2).getY(),
                 venue.getCheckPoints(3).getName());
-
-        text0.setFill(Color.BLUEVIOLET);
+        text0.setFill(Color.GREEN);
+        text1.setFill(Color.GREEN);
+        text2.setFill(Color.GREEN);
+        text3.setFill(Color.GREEN);
         text0.setStyle("-fx-font: 45 arial;");
-        text1.setFill(Color.BLUEVIOLET);
         text1.setStyle("-fx-font: 45 arial;");
-        text2.setFill(Color.BLUEVIOLET);
         text2.setStyle("-fx-font: 45 arial;");
-        text3.setFill(Color.BLUEVIOLET);
         text3.setStyle("-fx-font: 45 arial;");
-
         groupCenter.getChildren().addAll(path0, path1, path2, path3,
                 text0, text1, text2, text3,
                 image0, image1, image2, image3);
@@ -243,6 +248,8 @@ public class Main extends Application {
                 "    Once the race is completed each cars \n    racing statistics" +
                 "will be displayed in \n    the bottom section of the window.");
         instructions.getChildren().addAll(instructionHeader,directions);
+        directions.getStyleClass().add("label-directions");
+        instructionHeader.getStyleClass().add("label-directionHeader");
         pane.setLeft(instructions);
 
     }

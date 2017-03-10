@@ -1,0 +1,40 @@
+.root{
+    -fx-background-color: #9f80ff;
+}
+
+.label-directions{
+    -fx-text-fill: black;
+    -fx-font-size: 22px;
+    -fx-background-radius: 50%;
+
+    -fx-font-style: oblique;
+    -fx-border-color: black;
+    -fx-border-width: 300%;
+    -fx-border-radius: 3%;
+
+}
+
+.label-directionHeader{
+    -fx-text-fill: black;
+    -fx-font-size: 22px;
+    -fx-effect: dropshadow(three-pass-box, gray,10, 0.20 ,1 , 1);
+    -fx-font-style: oblique;
+}
+
+.button{
+    -fx-background-color:black;
+    -fx-text-fill:white;
+    -fx-wrap-text: true;
+    -fx-effect: dropshadow( three-pass-box, yellow, 20.0, 0.0, 0.0, 0.0);
+    -fx-cursor:hand;
+}
+.button:hover{
+    -fx-background-color:white;
+    -fx-text-fill:black;
+    -fx-font-weight:bold;
+}
+
+.alert{
+    -fx-background-color: black;
+}
+
