@@ -24,10 +24,10 @@ public class Venue {
 
 
 
-        checkPoints[0] = new CheckPoint( 0, 0, 316, 4, "A");
-        checkPoints[1] = new CheckPoint( 1000, 100, 787, 347, "B");
-        checkPoints[2] = new CheckPoint( 500, 480, 345, 450, "C");
-        checkPoints[3] = new CheckPoint( 10, 500, 10, 200, "D");
+        checkPoints[0] = new CheckPoint( 100, 100, 316, 144, "A");
+        checkPoints[1] = new CheckPoint( 500, 200, 527, 287, "B");
+        checkPoints[2] = new CheckPoint( 500, 500, 345, 495, "C");
+        checkPoints[3] = new CheckPoint( 75, 500, 100, 280, "D");
     }
     public double getCkPointX(int value){
         return checkPoints[value].getX();

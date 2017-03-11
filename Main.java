@@ -1,3 +1,6 @@
+/*
+ * Sergio De Sa
+ */
 
 
 import javafx.animation.PathTransition;
@@ -43,10 +46,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        cars[0] = new Car(10, 200,imageA);
-        cars[1] = new Car(316, 4,imageB);
-        cars[2] = new Car(787, 347,imageC);
-        cars[3] = new Car(345, 450,imageD);
+        cars[0] = new Car(100, 280,imageA);
+        cars[1] = new Car(316, 144,imageB);
+        cars[2] = new Car(527, 287,imageC);
+        cars[3] = new Car(345, 495,imageD);
         cars[0].setName("Blue Car");
         cars[1].setName("Green Car");
         cars[2].setName("Red Car");
@@ -87,15 +90,15 @@ public class Main extends Application {
         Group groupCenter = new Group();
         GridPane grid = new GridPane();
         grid.setGridLinesVisible(true);
-        grid.setLayoutX(0);
-        grid.setLayoutY(0);
+        grid.setLayoutX(500);
+        grid.setLayoutY(500);
 
 
         groupCenter.getChildren().addAll(grid);
         Path path0 = new Path();
         path0.setStrokeWidth(100);
         path0.setFill(Color.ALICEBLUE);
-        path0.getElements().add(new MoveTo(10, 200));
+        path0.getElements().add(new MoveTo(100, 280));
         path0.getElements().addAll(  venue.getCheckPoints(0),
                 venue.getCheckPoints(1),
                 venue.getCheckPoints(2),
@@ -104,7 +107,7 @@ public class Main extends Application {
 
         Path path1 = new Path();
 //        path1.setStrokeWidth(30);
-        path1.getElements().addAll(new MoveTo(316, 4));
+        path1.getElements().addAll(new MoveTo(316, 144));
         path1.getElements().addAll(venue.getCheckPoints(1),
                 venue.getCheckPoints(2),
                 venue.getCheckPoints(3),
@@ -112,7 +115,7 @@ public class Main extends Application {
 
         Path path2 = new Path();
 //        path2.setStrokeWidth(30);
-        path2.getElements().addAll(new MoveTo(787, 347));
+        path2.getElements().addAll(new MoveTo(527, 287));
         path2.getElements().addAll(venue.getCheckPoints(2),
                 venue.getCheckPoints(3),
                 venue.getCheckPoints(0),
@@ -120,34 +123,34 @@ public class Main extends Application {
 
         Path path3 = new Path();
 //        path3.setStrokeWidth(30);
-        path3.getElements().addAll(new MoveTo(345, 450));
+        path3.getElements().addAll(new MoveTo(345, 495));
         path3.getElements().addAll(venue.getCheckPoints(3),
                 venue.getCheckPoints(0),
                 venue.getCheckPoints(1),
                 venue.getCheckPoints(2));
 
         image0 = new ImageView(cars[0].getCarImage());
-        image0.setX(10);
-        image0.setY(200);
+        image0.setX(100);
+        image0.setY(280);
         image0.setFitHeight(70);
         image0.setFitWidth(70);
 
         image1 = new ImageView(cars[1].getCarImage());
         image1.setX(316);
-        image1.setY(4);
+        image1.setY(144);
         image1.setFitHeight(70);
         image1.setFitWidth(70);
 
 
         image2 = new ImageView(cars[2].getCarImage());
-        image2.setX(787);
-        image2.setY(347);
+        image2.setX(527);
+        image2.setY(287);
         image2.setFitHeight(70);
         image2.setFitWidth(70);
 
         image3 = new ImageView(cars[3].getCarImage());
         image3.setX(345);
-        image3.setY(450);
+        image3.setY(495);
         image3.setFitHeight(70);
         image3.setFitWidth(70);
 
