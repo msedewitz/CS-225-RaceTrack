@@ -15,6 +15,7 @@ public class Car {
     private int x,y;
     private Image image;
     private String name;
+    private double time;
 
     //constructor
     public Car(int startX, int startY,Image i){
@@ -22,6 +23,7 @@ public class Car {
         image = i;
         x = startX;
         y = startY;
+        time = 0;
     }
 
     //methods
@@ -32,9 +34,9 @@ public class Car {
      */
     public void calcSpeed(){
         Random rand = new Random();
-        tire = rand.nextInt(10)+1;
-        engine = rand.nextInt(10)+1;
-        weight = rand.nextInt(10)+1;
+        tire = rand.nextInt(100)+1;
+        engine = rand.nextInt(100)+1;
+        weight = rand.nextInt(100)+1;
         speed = ((double)(tire+engine+weight))/3;
 
         //round speed to 2 decimal places
@@ -51,15 +53,44 @@ public class Car {
     public double getSpeed(){return speed;}
     public int getX(){return x;}
     public int getY(){return y;}
-    public void setName(String n){name = n;}
     public String getName(){return name;}
+    public Image getCarImage(){return image;}
+    public double getTime(){return time;}
+
+    /**
+     * set the name of the car
+     * @param n, the car name
+     */
+    public void setName(String n){name = n;}
+
+    /**
+     * Set time for car to finish
+     * @param t, time it takes for the car to complete the race
+     */
+    public void setTime(double t){time=t;}
+
+    /**
+     * create a string of all important car values
+     * can only be called after a setName() is called
+     * @return
+     */
     public String toString(){
-        return "Name: "+name+ "\n  Tire Pressure: "+tire+"psi\n  Engine Horsepower: "+engine+"00\n  Weight: "+weight+"00lbs\n  Speed: "+speed*10+"mph\n\n";
+        return "Name: "+name+ "\n  Tire Pressure: "+tire+"psi\n  Engine Horsepower: "+engine+"00\n  Weight: "+weight+"00lbs\n  Speed: "+speed+"mph\n\n";
     }
 
-    public Image getCarImage(){
-        return image;
-    }
+    /**
+     * returns a string with the cars name, and the time it took to complete the race
+     * can only be called after setName() and setTime() are both called
+     * @return a String with name and time
+     */
+    public String getResult(){
+        int min = (int)time/60;
+        double sec = time%60;
+        sec = sec*100;
+        sec = Math.round(sec);
+        sec = sec/100;
 
+        return name+ " :: "+min+":"+sec+"\n";
+    }
 
 }
