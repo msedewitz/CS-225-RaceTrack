@@ -178,7 +178,7 @@ public class Main extends Application {
              */
             speed0 = cars[0].getSpeed(); // the speed of first car
             PathTransition pathTransition0 = new PathTransition();
-            pathTransition0.setDuration(Duration.seconds(speed0));
+            pathTransition0.setDuration(Duration.seconds(1000/speed0));//change the 1000 to change race time
             pathTransition0.setPath(path0);
             pathTransition0.setNode(image0);
             //setOrientation get the car on track
@@ -189,7 +189,7 @@ public class Main extends Application {
             cars[1].calcSpeed();
             PathTransition pathTransition1 = new PathTransition();
             speed1 = cars[1].getSpeed();
-            pathTransition1.setDuration(Duration.seconds(speed1));
+            pathTransition1.setDuration(Duration.seconds(1000/speed1));
             pathTransition1.setPath(path1);
             pathTransition1.setNode(image1);
             //setOrientation get the car on track
@@ -200,7 +200,7 @@ public class Main extends Application {
             cars[2].calcSpeed();
             PathTransition pathTransition2 = new PathTransition();
             speed2 = cars[2].getSpeed();
-            pathTransition2.setDuration(Duration.seconds(speed2));
+            pathTransition2.setDuration(Duration.seconds(1000/speed2));
             pathTransition2.setPath(path2);
             pathTransition2.setNode(image2);
             //setOrientation get the car on track
@@ -211,7 +211,7 @@ public class Main extends Application {
             cars[3].calcSpeed();
             PathTransition pathTransition3 = new PathTransition();
             speed3 = cars[3].getSpeed();
-            pathTransition3.setDuration(Duration.seconds(speed3));
+            pathTransition3.setDuration(Duration.seconds(1000/speed3));
             pathTransition3.setPath(path3);
             pathTransition3.setNode(image3);
             //setOrientation get the car on track
